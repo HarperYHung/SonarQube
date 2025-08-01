@@ -1,0 +1,31 @@
+# 忽略 Docker 環境檔與機密資訊
+.env
+*.env
+
+# 忽略 log 檔
+*.log
+
+# 忽略 Docker build 過程暫存檔
+docker-compose.override.yml
+
+# 忽略 SonarQube 掛載的資料夾（如果不想追蹤這些資料）
+sonarqube_data/
+sonarqube_extensions/
+sonarqube_logs/
+mssql_data/
+mssql-init/
+
+# 忽略 VSCode / JetBrains IDE 設定
+.vscode/
+.idea/
+
+# Python / Node / Java 開發常見快取（可視專案調整）
+__pycache__/
+*.pyc
+node_modules/
+build/
+dist/
+
+# macOS / Windows 系統快取
+.DS_Store
+Thumbs.db

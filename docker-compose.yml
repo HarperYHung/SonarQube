@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  sonarqube:
+    image: sonarqube:community
+    container_name: sonarqube_community
+    depends_on:
+      - db
+    environment:
+      SONAR_JDBC_URL: jdbc:sqlserver://db:1433;databaseName=${SONAR_DB_NAME}
+      SONAR_JDBC_USERNAME: ${SONAR_DB_USER}
+      SONAR_JDBC_PASSWORD: ${SONAR_DB_PASSWORD}
+    volumes:
+      - ./sonarqube_data:/opt/sonarqube/data
+      - ./sonarqube_extensions:/opt/sonarqube/extensions
+      - ./sonarqube_logs:/opt/sonarqube/logs
+    ports:
+      - "9000:9000"
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserver_2019
+    environment:
+      SA_PASSWORD: "${MSSQL_SA_PASSWORD}"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - ./mssql_data:/var/opt/mssql
+    ports:
+      - "1433:1433"
+
+# volumes:
+#   sonarqube_data:
+#   sonarqube_extensions:
+#   sonarqube_logs:
+#   mssql_data:

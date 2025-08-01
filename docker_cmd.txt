@@ -1,0 +1,5 @@
+# 假設原本的容器壞了，你直接刪掉：
+docker-compose down
+
+# 編輯好新的 docker-compose.yml，保持原本 volume 名稱
+docker-compose up -d
